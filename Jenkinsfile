@@ -12,5 +12,21 @@ pipeline {
                 stash(name: 'compiled-results', includes: 'src/*.py*') 
             }
         }
+		stage('Code Quality Check via SonarQube') {
+			steps {
+				 script {
+				 def scannerHome = tool 'SonarQube';
+				 withSonarQubeEnv('SonarQube') {
+				 sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey='3103 Practical -Dsonar.sources=."
+				 }
+ }
+ }
+ }
+ }
+		 post {
+		 always {
+		 recordIssues enabledForFailure: true, tool: sonarQube()
+		 }
+		 }
     }
 }
