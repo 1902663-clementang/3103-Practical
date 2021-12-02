@@ -19,9 +19,9 @@ pipeline {
 				 withSonarQubeEnv('SonarQube') {
 				 sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey='3103 Practical -Dsonar.sources=."
 				 }
- }
- }
- }
+			}
+		}
+	}
  }
 		 post {
 		 always {
@@ -29,4 +29,3 @@ pipeline {
 		 }
 		 }
     }
-}
